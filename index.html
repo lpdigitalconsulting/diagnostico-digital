@@ -528,40 +528,40 @@ function buildResults(){
     level="Etapa Inicial";color="#FF4D6D";emoji="🌱";
     desc=udata.empresa+" esta en los primeros pasos de su transformacion digital. Existe una gran brecha de oportunidad que, con la estrategia correcta, puede convertirse en ventaja competitiva en 12-18 meses. El punto de partida mas bajo tiene el mayor potencial de crecimiento.";
     recs=[
-      {icon:"🗺️",bg:"rgba(255,77,109,.1)",pri:"Critico — Iniciar ya",pc:"#FF4D6D",n:"Definir Roadmap Digital",d:"Establecer vision tecnologica con metas medibles a 12, 24 y 36 meses. Sin mapa no hay destino.",tags:["1-2 meses","Alta prioridad","Fundacional"]},
-      {icon:"☁️",bg:"rgba(0,229,255,.08)",pri:"Critico",pc:"#FF4D6D",n:"Primera Migracion a la Nube",d:"Mover operaciones criticas a cloud. Ganar agilidad, reducir costos y habilitar trabajo remoto.",tags:["2-4 meses","ROI inmediato"]},
-      {icon:"👥",bg:"rgba(240,165,0,.08)",pri:"Alta prioridad",pc:"#F0A500",n:"Capacitacion Digital Basica",d:"Programa de alfabetizacion digital para todos los niveles. La tecnologia sin cultura fracasa.",tags:["3-6 meses","Cultura"]},
-      {icon:"📊",bg:"rgba(0,229,160,.08)",pri:"Alta prioridad",pc:"#00E5A0",n:"Dashboard de Indicadores",d:"Implementar KPIs basicos en tiempo real. No se puede mejorar lo que no se mide.",tags:["1-2 meses","Quick win"]},
+      {icon:"🗺️",bg:"rgba(255,77,109,.1)",pri:"🔴 Crítico — Iniciar ya",pc:"#FF4D6D",n:"Definir Roadmap Digital",d:"Establecer visión tecnológica con metas medibles a 12, 24 y 36 meses. Sin mapa no hay destino.",tags:["1-2 meses","Alta prioridad","Fundacional"]},
+      {icon:"☁️",bg:"rgba(0,229,255,.08)",pri:"🔴 Crítico",pc:"#FF4D6D",n:"Primera Migración a la Nube",d:"Mover operaciones críticas a cloud. Ganar agilidad, reducir costos y habilitar trabajo remoto.",tags:["2-4 meses","ROI inmediato"]},
+      {icon:"👥",bg:"rgba(240,165,0,.08)",pri:"🟡 Alta prioridad",pc:"#F0A500",n:"Capacitación Digital Básica",d:"Programa de alfabetización digital para todos los niveles. La tecnología sin cultura fracasa.",tags:["3-6 meses","Cultura"]},
+      {icon:"📊",bg:"rgba(0,229,160,.08)",pri:"🟡 Alta prioridad",pc:"#00E5A0",n:"Dashboard de Indicadores",d:"Implementar KPIs básicos en tiempo real. No se puede mejorar lo que no se mide.",tags:["1-2 meses","Quick win"]},
     ];
     nexts=["Agendar sesion de diagnostico profundo con Leonardo","Identificar los 3 procesos con mayor impacto para digitalizar primero","Establecer presupuesto inicial de transformacion","Definir el primer piloto tecnologico de bajo riesgo y alto impacto"];
   } else if(pct<50){
     level="En Desarrollo";color="#F0A500";emoji="🔧";
     desc=udata.empresa+" tiene bases digitales en construccion. Hay iniciativas en marcha pero falta integracion, estrategia unificada y escalabilidad. Con las prioridades correctas, pueden alcanzar madurez digital competitiva en 18-24 meses.";
     recs=[
-      {icon:"🔗",bg:"rgba(0,229,255,.08)",pri:"Alta prioridad",pc:"#FF4D6D",n:"Integracion de Sistemas",d:"Conectar las herramientas existentes para eliminar silos de informacion y duplicidad de trabajo.",tags:["3-6 meses","Alta prioridad"]},
-      {icon:"🤖",bg:"rgba(139,92,246,.08)",pri:"Alta prioridad",pc:"#8B5CF6",n:"Automatizacion de Procesos Clave",d:"Identificar y automatizar los 3 procesos de mayor impacto operativo con RPA o workflows.",tags:["2-4 meses","ROI alto"]},
-      {icon:"📈",bg:"rgba(0,229,160,.08)",pri:"Media prioridad",pc:"#00E5A0",n:"Analytics y Business Intelligence",d:"Implementar CRM y dashboards ejecutivos con KPIs en tiempo real para decisiones basadas en datos.",tags:["2-3 meses","Decisiones"]},
-      {icon:"🛡️",bg:"rgba(255,77,109,.08)",pri:"Media prioridad",pc:"#F0A500",n:"Politica de Ciberseguridad",d:"Establecer protocolos, MFA y capacitar al equipo en seguridad digital.",tags:["1-2 meses","Riesgo"]},
+      {icon:"🔗",bg:"rgba(0,229,255,.08)",pri:"🔴 Alta prioridad",pc:"#FF4D6D",n:"Integración de Sistemas",d:"Conectar las herramientas existentes para eliminar silos de informacion y duplicidad de trabajo.",tags:["3-6 meses","Alta prioridad"]},
+      {icon:"🤖",bg:"rgba(139,92,246,.08)",pri:"🔴 Alta prioridad",pc:"#8B5CF6",n:"Automatización de Procesos Clave",d:"Identificar y automatizar los 3 procesos de mayor impacto operativo con RPA o workflows.",tags:["2-4 meses","ROI alto"]},
+      {icon:"📈",bg:"rgba(0,229,160,.08)",pri:"🟡 Media prioridad",pc:"#00E5A0",n:"Analytics & Business Intelligence",d:"Implementar CRM y dashboards ejecutivos con KPIs en tiempo real para decisiones basadas en datos.",tags:["2-3 meses","Decisiones"]},
+      {icon:"🛡️",bg:"rgba(255,77,109,.08)",pri:"🟡 Media prioridad",pc:"#F0A500",n:"Política de Ciberseguridad",d:"Establecer protocolos, MFA y capacitar al equipo en seguridad digital.",tags:["1-2 meses","Riesgo"]},
     ];
     nexts=["Mapear y priorizar integraciones entre sistemas actuales","Seleccionar herramienta de automatizacion (Power Automate, RPA)","Implementar CRM para gestion de clientes","Definir politica de ciberseguridad corporativa"];
   } else if(pct<75){
     level="Maduro";color="#00E5FF";emoji="⚡";
     desc=udata.empresa+" tiene una base digital solida y procesos bien establecidos. Estan en el top 15% de madurez digital en Mexico. El siguiente paso es optimizar, escalar e integrar inteligencia artificial para mantener ventaja competitiva sostenida.";
     recs=[
-      {icon:"🧠",bg:"rgba(139,92,246,.08)",pri:"Diferenciador clave",pc:"#8B5CF6",n:"Estrategia de IA Generativa",d:"Implementar casos de uso de IA en atencion al cliente, operaciones y analisis predictivo.",tags:["3-6 meses","Diferenciador"]},
-      {icon:"📡",bg:"rgba(0,229,255,.08)",pri:"Diferenciador clave",pc:"#00E5FF",n:"Data Lake y Analitica Avanzada",d:"Arquitectura de datos para analitica predictiva y machine learning sobre datos propios.",tags:["4-8 meses","Escalabilidad"]},
-      {icon:"🌐",bg:"rgba(0,229,160,.08)",pri:"Optimizacion",pc:"#00E5A0",n:"Experiencia Omnicanal Premium",d:"Integrar todos los puntos de contacto digital en una experiencia de cliente fluida y personalizada.",tags:["3-5 meses","CX"]},
-      {icon:"🚀",bg:"rgba(240,165,0,.08)",pri:"Optimizacion",pc:"#F0A500",n:"Centro de Innovacion Digital",d:"Crear equipo dedicado a explorar y pilotar tecnologias emergentes antes que la competencia.",tags:["4-6 meses","Innovacion"]},
+      {icon:"🧠",bg:"rgba(139,92,246,.08)",pri:"🎯 Diferenciador clave",pc:"#8B5CF6",n:"Estrategia de IA Generativa",d:"Implementar casos de uso de IA en atencion al cliente, operaciones y analisis predictivo.",tags:["3-6 meses","Diferenciador"]},
+      {icon:"📡",bg:"rgba(0,229,255,.08)",pri:"🎯 Diferenciador clave",pc:"#00E5FF",n:"Data Lake y Analítica Avanzada",d:"Arquitectura de datos para analitica predictiva y machine learning sobre datos propios.",tags:["4-8 meses","Escalabilidad"]},
+      {icon:"🌐",bg:"rgba(0,229,160,.08)",pri:"✨ Optimización",pc:"#00E5A0",n:"Experiencia Omnicanal Premium",d:"Integrar todos los puntos de contacto digital en una experiencia de cliente fluida y personalizada.",tags:["3-5 meses","CX"]},
+      {icon:"🚀",bg:"rgba(240,165,0,.08)",pri:"✨ Optimización",pc:"#F0A500",n:"Centro de Innovación Digital",d:"Crear equipo dedicado a explorar y pilotar tecnologias emergentes antes que la competencia.",tags:["4-6 meses","Innovacion"]},
     ];
     nexts=["Definir caso de uso prioritario de IA generativa","Evaluar arquitectura de datos actual y gaps para ML","Disenar estrategia omnicanal con journey del cliente","Establecer metricas de madurez para los proximos 12 meses"];
   } else {
     level="Lider Digital";color="#00E5A0";emoji="🏆";
     desc=udata.empresa+" es una organizacion digitalmente lider. Estan en el top 1% de madurez digital en Mexico. El enfoque ahora debe ser en innovacion disruptiva, liderazgo sectorial y construccion de ecosistemas digitales propios.";
     recs=[
-      {icon:"🌟",bg:"rgba(240,165,0,.08)",pri:"Liderazgo sectorial",pc:"#F0A500",n:"Agentes de IA Autonomos",d:"Implementar agentes de IA que tomen decisiones operativas y estrategicas de forma autonoma.",tags:["Vanguardia","IA avanzada"]},
-      {icon:"🔬",bg:"rgba(139,92,246,.08)",pri:"Innovacion disruptiva",pc:"#8B5CF6",n:"Laboratorio de Innovacion I+D",d:"Formalizar area de I+D para experimentar con tecnologias de proxima generacion.",tags:["12+ meses","Futuro"]},
-      {icon:"🤝",bg:"rgba(0,229,255,.08)",pri:"Ecosistema digital",pc:"#00E5FF",n:"Plataforma y API Economy",d:"Construir plataformas propias y abrir APIs para crear ecosistemas de valor con socios.",tags:["6-12 meses","Escala"]},
-      {icon:"🎓",bg:"rgba(0,229,160,.08)",pri:"Thought Leadership",pc:"#00E5A0",n:"Posicionamiento como Referente",d:"Publicar casos de exito y convertirse en referente digital del sector.",tags:["Continuo","Marca"]},
+      {icon:"🌟",bg:"rgba(240,165,0,.08)",pri:"🏆 Liderazgo sectorial",pc:"#F0A500",n:"Agentes de IA Autónomos",d:"Implementar agentes de IA que tomen decisiones operativas y estrategicas de forma autonoma.",tags:["Vanguardia","IA avanzada"]},
+      {icon:"🔬",bg:"rgba(139,92,246,.08)",pri:"🚀 Innovación disruptiva",pc:"#8B5CF6",n:"Laboratorio de Innovación I+D",d:"Formalizar area de I+D para experimentar con tecnologias de proxima generacion.",tags:["12+ meses","Futuro"]},
+      {icon:"🤝",bg:"rgba(0,229,255,.08)",pri:"🌐 Ecosistema digital",pc:"#00E5FF",n:"Plataforma & API Economy",d:"Construir plataformas propias y abrir APIs para crear ecosistemas de valor con socios.",tags:["6-12 meses","Escala"]},
+      {icon:"🎓",bg:"rgba(0,229,160,.08)",pri:"🎓 Thought Leadership",pc:"#00E5A0",n:"Posicionamiento como Referente",d:"Publicar casos de exito y convertirse en referente digital del sector.",tags:["Continuo","Marca"]},
     ];
     nexts=["Explorar implementacion de agentes de IA autonomos","Establecer programa de innovacion abierta con startups","Abrir API publica para construir ecosistema de partners","Preparar caso de estudio de transformacion para publicar"];
   }
@@ -688,6 +688,10 @@ function sendLeadEmail(scorePct, levelName){
 
   var params={
     to_email:"lperezmorales625@gmail.com",
+    to_name:"Leonardo Perez",
+    from_name:udata.nombre+" | "+udata.empresa,
+    from_email:udata.email,
+    reply_to:udata.email,
     empresa:udata.empresa,
     nombre:udata.nombre,
     cargo:udata.cargo,
@@ -700,7 +704,17 @@ function sendLeadEmail(scorePct, levelName){
     level:levelName,
     dimensions:dimSummary,
     fecha:fechaStr,
-    message:"NUEVO LEAD - Diagnostico Digital\n\nEmpresa: "+udata.empresa+"\nContacto: "+udata.nombre+" - "+udata.cargo+"\nEmail: "+udata.email+"\nTelefono: "+udata.tel+"\nSector: "+udata.sector+"\nTamano: "+udata.size+"\nPresupuesto TI: "+udata.budget+"\nResultado: "+levelName+" - "+scorePct+"%\nDimensiones: "+dimSummary+"\nFecha: "+fechaStr
+    message:"NUEVO LEAD - Diagnostico Digital\n\n"+
+      "Empresa: "+udata.empresa+"\n"+
+      "Contacto: "+udata.nombre+" | "+udata.cargo+"\n"+
+      "Email: "+udata.email+"\n"+
+      "Telefono: "+udata.tel+"\n"+
+      "Sector: "+udata.sector+"\n"+
+      "Tamano: "+udata.size+"\n"+
+      "Presupuesto TI: "+udata.budget+"\n"+
+      "Resultado: "+levelName+" ("+scorePct+"%)\n"+
+      "Dimensiones: "+dimSummary+"\n"+
+      "Fecha: "+fechaStr
   };
 
   console.log("Enviando lead a EmailJS...", {empresa:udata.empresa, score:scorePct+"%", level:levelName});
@@ -835,4 +849,5 @@ show("s-hero");setDot(0);
 </script>
 </body>
 </html>
-Actualización de pdf
+
+Actualización de emogis
