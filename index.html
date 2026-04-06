@@ -1209,7 +1209,7 @@ function getPricingHTML(size){
 // ── SEND EMAIL VIA EMAILJS ──
 function sendLeadEmail(userData, pct, level){
   // Initialize EmailJS with public key
-  emailjs.init("YOUR_PUBLIC_KEY");
+  emailjs.init("Dku1oAep87GYPl5SZ");
   
   const dimScores={},dimMax={};
   DIMS.forEach(d=>{dimScores[d]=0;dimMax[d]=0;});
@@ -1236,7 +1236,7 @@ function sendLeadEmail(userData, pct, level){
 
   // Try EmailJS, fallback gracefully if not configured
   try{
-    emailjs.send("service_lp_digital","template_diagnostico",templateParams)
+    emailjs.send("service_olgtht6","template_if7ffam",templateParams)
       .then(()=>console.log("Lead enviado por email"))
       .catch(e=>console.log("EmailJS pendiente de configurar:",e));
   }catch(e){
@@ -1255,4 +1255,4 @@ show("s-hero");setDot(0);
 </script>
 </body>
 </html>
-Actualice mi pagina
+ya conecte emailjs
