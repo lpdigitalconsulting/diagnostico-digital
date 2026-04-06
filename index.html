@@ -489,6 +489,7 @@ input::placeholder{color:var(--muted2);}
   .btn-portfolio{grid-column:1;}
 }
 </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -689,7 +690,8 @@ input::placeholder{color:var(--muted2);}
 // ── DATA ──
 const DIMS=["Estrategia Digital","Tecnología","Datos & Analítica","Procesos","Talento & Cultura","Innovación & IA"];
 const DCOLORS=["#00E5FF","#F0A500","#00E5A0","#A78BFA","#F472B6","#60A5FA"];
-const DICONS=["🎯","⚙️","📊","🔄","👥","🤖"];
+const DICONS=["[01]","[02]","[03]","[04]","[05]","[06]"];
+const DICONS_UI=["🎯","⚙️","📊","🔄","👥","🤖"];
 const QS=[
   {d:"Estrategia Digital",c:"Estrategia & Visión",q:"¿Tu empresa tiene una estrategia digital documentada, comunicada y alineada a los objetivos de negocio?",tip:"Una estrategia digital no es tener redes sociales. Es un plan con metas medibles de cómo la tecnología impulsa el crecimiento.",opts:[{t:"No existe ninguna estrategia digital",s:"Las decisiones tecnológicas son reactivas o ad hoc",v:0},{t:"Está en proceso de definición",s:"Se habla de digitalización pero no está formalizado",v:1},{t:"Existe pero no se comunica bien",s:"Está escrita pero los equipos no la conocen ni aplican",v:2},{t:"Documentada, comunicada y en ejecución activa",s:"Toda la organización trabaja alineada con métricas claras",v:3}]},
   {d:"Estrategia Digital",c:"Estrategia & Visión",q:"¿Cómo se toman las decisiones tecnológicas en tu organización?",tip:"Las empresas maduras toman decisiones tecnológicas basadas en datos, no en preferencias personales.",opts:[{t:"De forma reactiva, solo cuando algo falla",s:"Sin planificación proactiva de tecnología",v:0},{t:"Basadas en preferencia del directivo de turno",s:"Decisiones personales sin análisis formal",v:1},{t:"Con análisis de costo-beneficio por proyecto",s:"Se evalúan opciones antes de decidir",v:2},{t:"Con datos, KPIs, benchmarks y visión a largo plazo",s:"Proceso estructurado con comité y criterios claros",v:3}]},
@@ -781,7 +783,7 @@ function startQuiz(){
 
 // ── QUIZ ──
 function buildChips(){
-  document.getElementById("dchips").innerHTML=DIMS.map((d,i)=>`<div class="dchip" id="dc${i}">${DICONS[i]} ${d}</div>`).join("");
+  document.getElementById("dchips").innerHTML=DIMS.map((d,i)=>`<div class="dchip" id="dc${i}">${DICONS_UI[i]} ${d}</div>`).join("");
 }
 function updateChips(){
   DIMS.forEach((d,i)=>{
@@ -841,6 +843,7 @@ function startLoading(){
 // ── RESULTS ──
 function buildResults(){
   show("s-results");setDot(3);
+  sendLeadEmail(udata, pct, level);
   const ds={},dm={};
   DIMS.forEach(d=>{ds[d]=0;dm[d]=0;});
   QS.forEach((q,i)=>{ds[q.d]+=q.opts[ans[i]??0].v;dm[q.d]+=3;});
@@ -932,7 +935,7 @@ function buildResults(){
       ${DIMS.map((d,i)=>`
         <div class="drow">
           <div class="drow-hdr">
-            <div class="drow-name">${DICONS[i]} ${d}</div>
+            <div class="drow-name">${DICONS_UI[i]} ${d}</div>
             <div class="drow-pct" style="color:${DCOLORS[i]}">${dimPcts[d]}%</div>
           </div>
           <div class="drow-track"><div class="drow-bar" style="width:0%;background:${DCOLORS[i]}" data-w="${dimPcts[d]}"></div></div>
@@ -989,44 +992,7 @@ function buildResults(){
   <div class="rcard">
     <div class="rcard-title">¿Listo para transformar digitalmente tu empresa?</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.5rem;" class="plans-grid">
-      <div class="plan-card">
-        <span class="plan-badge">Plan Gratuito</span>
-        <div class="plan-name">Diagnóstico Online</div>
-        <div class="plan-price free">$0</div>
-        <div class="plan-detail">Lo que acabas de completar</div>
-        <div class="plan-feats">
-          <div class="plan-feat">Reporte de madurez digital</div>
-          <div class="plan-feat">Análisis por dimensión</div>
-          <div class="plan-feat">Plan de acción básico</div>
-          <div class="plan-feat">Exportar en PDF</div>
-        </div>
-      </div>
-      <div class="plan-card featured">
-        <span class="plan-badge">⭐ Recomendado</span>
-        <div class="plan-name">Diagnóstico + Consultoría</div>
-        <div class="plan-price paid">$5,000</div>
-        <div class="plan-detail">MXN · Sesión 1:1 incluida</div>
-        <div class="plan-feats">
-          <div class="plan-feat">Todo lo del plan gratuito</div>
-          <div class="plan-feat">Presentación ejecutiva PDF</div>
-          <div class="plan-feat">Sesión estratégica 90 min</div>
-          <div class="plan-feat">Roadmap detallado 12 meses</div>
-          <div class="plan-feat">Benchmark contra tu sector</div>
-        </div>
-      </div>
-      <div class="plan-card">
-        <span class="plan-badge">Empresarial</span>
-        <div class="plan-name">Diagnóstico Corporativo</div>
-        <div class="plan-price paid">$15,000</div>
-        <div class="plan-detail">MXN · Para equipos directivos</div>
-        <div class="plan-feats">
-          <div class="plan-feat">Todo lo anterior</div>
-          <div class="plan-feat">Diagnóstico para todo el C-Suite</div>
-          <div class="plan-feat">Presentación al board</div>
-          <div class="plan-feat">Plan de implementación 90 días</div>
-          <div class="plan-feat">Acompañamiento mensual</div>
-        </div>
-      </div>
+<div id="plans-container"><!-- plans injected by JS --></div>
     </div>
     <div class="action-grid">
       <a class="btn-wa" id="btn-wa-result" href="#" target="_blank">
@@ -1140,7 +1106,7 @@ function downloadPDF(){
         const dc=DCOLORS[i];
         const r=parseInt(dc.slice(1,3),16),g=parseInt(dc.slice(3,5),16),b=parseInt(dc.slice(5,7),16);
         doc.setTextColor(...white);doc.setFontSize(8);doc.setFont("helvetica","bold");
-        doc.text(`${DICONS[i]} ${d}`,14,y);
+        doc.text(`${DICONS_UI[i]} ${d}`,14,y);
         doc.setTextColor(r,g,b);doc.text(dp+"%",185,y,{align:"right"});
         // bar bg
         doc.setFillColor(30,48,72);doc.roundedRect(14,y+2,170,4,1,1,"F");
@@ -1165,7 +1131,7 @@ function downloadPDF(){
         if(y>250){doc.addPage();doc.setFillColor(...dark);doc.rect(0,0,W,297,"F");y=20;}
         doc.setFillColor(9,21,37);doc.roundedRect(14,y,180,18,3,3,"F");
         doc.setTextColor(...white);doc.setFontSize(8);doc.setFont("helvetica","bold");
-        doc.text(title,19,y+7);
+        doc.text(title,19,y+7,{maxWidth:170});
         doc.setTextColor(...muted);doc.setFontSize(7);doc.setFont("helvetica","normal");
         doc.text(desc,19,y+13,{maxWidth:170});
         y+=22;
@@ -1186,9 +1152,106 @@ function downloadPDF(){
   },300);
 }
 
+// ── PRICING BY COMPANY SIZE ──
+const PRICING={
+  "1–10 empleados (Micro)":{
+    plans:[
+      {badge:"Gratis",name:"Diagnóstico Básico",price:"$0",priceClass:"free",sub:"USD · Acceso inmediato",features:["Reporte de madurez digital","Análisis por dimensión","Plan de acción básico","Exportar en PDF"],featured:false},
+      {badge:"⭐ Recomendado",name:"Consultoría Starter",price:"$250",priceClass:"paid",sub:"USD · Para micro empresas",features:["Todo lo del plan gratuito","Sesión estratégica 60 min","Roadmap básico 6 meses","3 prioridades de acción","Seguimiento por WhatsApp"],featured:true},
+      {badge:"Growth",name:"Acompañamiento Mensual",price:"$450",priceClass:"paid",sub:"USD/mes · 3 meses mínimo",features:["Consultoría semanal","Implementación guiada","Dashboard de KPIs","Soporte prioritario"],featured:false}
+    ]
+  },
+  "11–50 empleados (Pequeña)":{
+    plans:[
+      {badge:"Gratis",name:"Diagnóstico Básico",price:"$0",priceClass:"free",sub:"USD · Acceso inmediato",features:["Reporte de madurez digital","Análisis por dimensión","Plan de acción básico","Exportar en PDF"],featured:false},
+      {badge:"⭐ Recomendado",name:"Consultoría Estratégica",price:"$490",priceClass:"paid",sub:"USD · Sesión 1:1 incluida",features:["Todo lo del plan gratuito","Presentación ejecutiva PDF","Sesión estratégica 90 min","Roadmap detallado 12 meses","Benchmark vs. tu sector"],featured:true},
+      {badge:"Empresarial",name:"Programa de Transformación",price:"$1,200",priceClass:"paid",sub:"USD · 3 meses",features:["Todo lo anterior","PMO ágil mensual","Capacitación al equipo","Implementación de 2 proyectos","Reporte ejecutivo mensual"],featured:false}
+    ]
+  },
+  "51–250 empleados (Mediana)":{
+    plans:[
+      {badge:"Gratis",name:"Diagnóstico Básico",price:"$0",priceClass:"free",sub:"USD · Acceso inmediato",features:["Reporte de madurez digital","Análisis por dimensión","Plan de acción básico","Exportar en PDF"],featured:false},
+      {badge:"⭐ Recomendado",name:"Consultoría Ejecutiva",price:"$990",priceClass:"paid",sub:"USD · Para medianas empresas",features:["Presentación al C-Suite","Roadmap 18 meses detallado","Benchmark sectorial","Workshop de priorización","Plan de 90 días accionable"],featured:true},
+      {badge:"Corporativo",name:"CTO Fractional",price:"$2,500",priceClass:"paid",sub:"USD/mes · Mínimo 6 meses",features:["Liderazgo tecnológico mensual","Gobierno de portafolio de TI","Gestión de proveedores tech","Comité tecnológico quincenal","Reportes al board"],featured:false}
+    ]
+  },
+  "251–1,000 empleados (Grande)":{
+    plans:[
+      {badge:"Gratis",name:"Diagnóstico Básico",price:"$0",priceClass:"free",sub:"USD · Acceso inmediato",features:["Reporte de madurez digital","Análisis por dimensión","Plan de acción básico","Exportar en PDF"],featured:false},
+      {badge:"⭐ Recomendado",name:"Programa Corporativo",price:"$3,500",priceClass:"paid",sub:"USD · Diagnóstico completo",features:["Diagnóstico para todo el C-Suite","Presentación al board","Plan de implementación 90 días","Workshops de transformación","Benchmark vs. top 10 del sector"],featured:true},
+      {badge:"Enterprise",name:"Transformación Digital Integral",price:"$8,500",priceClass:"paid",sub:"USD · 6 meses de acompañamiento",features:["CTO Fractional dedicado","PMO de transformación digital","Implementación de roadmap completo","Capacitación organizacional","Gobierno de datos e IA"],featured:false}
+    ]
+  },
+  "Más de 1,000 empleados (Corporativo)":{
+    plans:[
+      {badge:"Diagnóstico",name:"Assessment Ejecutivo",price:"$0",priceClass:"free",sub:"USD · Acceso inmediato",features:["Reporte de madurez digital","Análisis por dimensión","Plan de acción inicial","Exportar en PDF"],featured:false},
+      {badge:"⭐ Enterprise",name:"Programa de Transformación",price:"$12,000",priceClass:"paid",sub:"USD · Alcance corporativo",features:["Diagnóstico para todo el C-Suite","Presentación al consejo directivo","Roadmap 36 meses","Benchmark global del sector","Estrategia de IA corporativa"],featured:true},
+      {badge:"Platinum",name:"Socio Estratégico de Tecnología",price:"A convenir",priceClass:"paid",sub:"USD · Engagement multi-año",features:["Director de Tecnología externo","Gobierno tecnológico corporativo","Transformación organizacional","Co-creación de plataformas digitales","Ecosistema de innovación"],featured:false}
+    ]
+  }
+};
+
+function getPricingHTML(size){
+  const key=Object.keys(PRICING).find(k=>k===size)||"51–250 empleados (Mediana)";
+  const plans=PRICING[key].plans;
+  return `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:1.5rem;">
+    ${plans.map(p=>`
+      <div class="plan-card${p.featured?" featured":""}">
+        <span class="plan-badge">${p.badge}</span>
+        <div class="plan-name">${p.name}</div>
+        <div class="plan-price ${p.priceClass}">${p.price}</div>
+        <div class="plan-detail">${p.sub}</div>
+        <div class="plan-feats">${p.features.map(f=>`<div class="plan-feat">${f}</div>`).join("")}</div>
+      </div>`).join("")}
+  </div>`;
+}
+
+// ── SEND EMAIL VIA EMAILJS ──
+function sendLeadEmail(userData, pct, level){
+  // Initialize EmailJS with public key
+  emailjs.init("YOUR_PUBLIC_KEY");
+  
+  const dimScores={},dimMax={};
+  DIMS.forEach(d=>{dimScores[d]=0;dimMax[d]=0;});
+  QS.forEach((q,i)=>{dimScores[q.d]+=q.opts[ans[i]??0].v;dimMax[q.d]+=3;});
+  const dimSummary=DIMS.map((d,i)=>`${d}: ${Math.round((dimScores[d]/dimMax[d])*100)}%`).join(" | ");
+
+  const templateParams={
+    to_email:"lperezmorales625@gmail.com",
+    subject:`🎯 Nuevo Lead: ${userData.empresa} — ${level} (${pct}%)`,
+    empresa:userData.empresa,
+    nombre:userData.nombre,
+    cargo:userData.cargo,
+    email:userData.email,
+    telefono:userData.tel,
+    sector:userData.sector,
+    size:userData.size,
+    budget:userData.budget,
+    score:pct+"%",
+    level:level,
+    dimensions:dimSummary,
+    fecha:new Date().toLocaleDateString("es-MX",{year:"numeric",month:"long",day:"numeric",hour:"2-digit",minute:"2-digit"}),
+    message:`Nueva empresa completó el diagnóstico de madurez digital:\n\nEmpresa: ${userData.empresa}\nContacto: ${userData.nombre} - ${userData.cargo}\nEmail: ${userData.email}\nTeléfono: ${userData.tel}\nSector: ${userData.sector}\nTamaño: ${userData.size}\nPresupuesto TI: ${userData.budget}\n\nResultado: ${level} - ${pct}%\nDimensiones:\n${dimSummary}\n\nFecha: ${new Date().toLocaleString("es-MX")}`
+  };
+
+  // Try EmailJS, fallback gracefully if not configured
+  try{
+    emailjs.send("service_lp_digital","template_diagnostico",templateParams)
+      .then(()=>console.log("Lead enviado por email"))
+      .catch(e=>console.log("EmailJS pendiente de configurar:",e));
+  }catch(e){
+    console.log("Configure EmailJS en dashboard.emailjs.com con tu cuenta");
+  }
+  
+  // Fallback: also prepare mailto as backup (silent)
+  const body=encodeURIComponent(templateParams.message);
+  const mailtoLink=`mailto:lperezmorales625@gmail.com?subject=${encodeURIComponent(templateParams.subject)}&body=${body}`;
+  // Store for manual use if needed
+  window._leadMailto=mailtoLink;
+}
+
 // ── INIT ──
 show("s-hero");setDot(0);
 </script>
 </body>
-</html>
-actualice mi pagina
+</html>actualice mi pagina
